@@ -1,0 +1,66 @@
+NMAP NETWORK SCANNING - INTERNSHIP TASK 1
+========================================
+
+1. OBJECTIVE
+Use Nmap to identify open ports and services and evaluate
+their security implications in an authorized local environment
+
+2. TEST ENVIRONMENT
+Operating system: Kali Linux
+Nmap version: 7.99
+Target: 127.0.0.1 (localhost)
+Test service: Python SimpleHTTPServer
+Test port: 8000/TCP
+
+3. BASIC SCAN
+Command: nmap 127.0.0.1
+
+Results:
+All 1000 default-scanned TCP ports were reported closed
+No open ports were identified in this scan
+
+4. SERVICE/VERSION SCAN
+Command: nmap -sV 127.0.0.1
+
+Results:
+No open ports were identified in this initial scan
+
+5. OS DETECTION
+Command: nmap -O 127.0.0.1
+
+Results:
+Nmap could not determine specific OS details because too many
+fingerprints matched. OS identification was inconclusive
+
+6. CONTROLLED TEST SERVICE SCAN
+Command: nmap -sV -p 8000 127.0.0.1
+
+Obeserved results:
+Port: 8000/tcp
+State: open
+Service: http
+Version: SimpleHTTPServer 0.6 (Python 3.13.12)
+
+Service purpose:
+The Python HTTP server serves files from its configured
+working directory for local development and testing
+
+Security risk:
+If exposed to untrusted users, files in the served directory
+may be accessible. This basic server is not intended for production use.
+
+Mitigation:
+Bind the service to 127.0.0.1, avoid serving sensitive files, and stop the service when testing is complete
+
+7. CONCLUSION
+The initial localhost scan found no open ports among the 
+1000 default-scanned TCP ports. A deliberately started Python
+HTTP test server was subsequently detected on TCP port 8000.
+OS detection was inconclusive 
+
+These results describe a controlled local test and do not establish that an external system is vulnerable
+
+8. ETHICAL CONSIDERATIONS
+
+Only scan systems owned by the tester or explicitly authorized for testing.
+Do not scan external or production systems without permission.
